@@ -1,0 +1,27 @@
+This code sets up a real-time object detection system using OpenCV and the YOLOv3 (You Only Look Once version 3) model. Here’s a breakdown of the main components and their functionality:
+
+Camera Initialization: The code starts by attempting to access the webcam. If it cannot open the camera, it displays an error message and exits.
+
+Configuration Parameters: It defines several parameters for object detection:
+
+whT: The width and height to which the input image will be resized (320 pixels).
+confThreshold: The confidence threshold for detecting objects (0.5).
+nmsThreshold: The threshold for non-maximum suppression to reduce overlapping bounding boxes (0.2).
+Loading Class Names: The code tries to load the class names from a file named coco.names. If the file is not found, it prints an error message and exits.
+
+Loading YOLO Model: The YOLO model's configuration and weights are loaded from yolov3.cfg and yolov3.weights files. It also sets the preferable backend and target for the model to OpenCV.
+
+Object Detection Function: The findObjects function processes the model's outputs:
+
+It iterates through detected objects, extracting class IDs and confidence scores.
+If the confidence score exceeds the defined threshold, it calculates the bounding box coordinates and dimensions, storing them for later processing.
+Non-maximum suppression is applied to remove redundant overlapping boxes, and the final bounding boxes are drawn on the image.
+Main Loop: The program enters an infinite loop where it continuously captures frames from the webcam. For each frame:
+
+It converts the frame to a blob suitable for the neural network.
+The blob is fed into the YOLO model to get predictions.
+Detected objects are highlighted on the frame using the findObjects function.
+The modified frame is displayed in a fullscreen window.
+Exit Mechanism: The loop runs until the user presses the 'Esc' key, after which it releases the camera and closes all OpenCV windows.
+
+Overall, the code effectively demonstrates how to perform real-time object detection using deep learning and computer vision techniques.
